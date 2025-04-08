@@ -15,6 +15,11 @@ namespace LuhnApiService.CardValidatedChain.Chain
         }
         public CardValidatedStatus Handler(string CartNumber, CardValidatedStatus PreResult)
         {
+            if (CardValidatorChainHandler == null)
+            {
+                return CardValidatorFnc.CardProviderValidate(CartNumber, PreResult);
+            }
+
             return CardValidatorChainHandler.Handler(CartNumber, 
                 this.CardValidatorFnc.CardProviderValidate(CartNumber,PreResult));
         }

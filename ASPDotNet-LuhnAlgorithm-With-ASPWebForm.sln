@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuhnApiService", "LuhnApiService\LuhnApiService.csproj", "{C70CE8C3-61E0-45C7-B212-A638923563AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuhnApiService", "LuhnApiService\LuhnApiService.csproj", "{C70CE8C3-61E0-45C7-B212-A638923563AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuhnUi", "LuhnUi\LuhnUi.csproj", "{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLogicalTester", "NewLogicalTester\NewLogicalTester.csproj", "{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
