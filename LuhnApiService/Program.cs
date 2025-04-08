@@ -1,3 +1,5 @@
+using LuhnApiService.helper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,27 +10,29 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapPost("/v1/card-validator", async (HttpRequest request) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    try
+    {
+        // Read the request body (assuming JSON content)
+        var body = await request.ReadFromJsonAsync<CardValidatorRequest>();
+ 
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+        // Your logic to process the request body
+        // For example, validating the card:
+        if (body == null)
+        {
+      
+            return Results.BadRequest(new { status = HttpResponceEnum.SUCCESS.ToString()    , message = "Invalid request body" });
+        }
+
+        // Assuming successful validation:
+        return Results.Ok(new { status = HttpResponceEnum.SUCCESS.ToString(), message = body });
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new { status = HttpResponceEnum.FAILL.ToString(), message = "Invalid request body" });
+    }
 });
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
