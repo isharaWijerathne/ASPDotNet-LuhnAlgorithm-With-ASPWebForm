@@ -9,12 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
+
+builder.Services.AddCors(options => options.AddPolicy("SiteCrossPolicy",
+                builder => builder.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader()
+    ));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
+app.UseCors("SiteCrossPolicy");
 app.UseHttpsRedirection();
-app.UseCors();
+
+
 
 app.MapPost("/v1/card-validator", async (HttpRequest request) =>
 {

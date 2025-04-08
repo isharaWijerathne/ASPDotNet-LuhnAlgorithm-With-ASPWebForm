@@ -69,9 +69,9 @@
                             }
                         ),
 
-                        contentType: "application/json; charset=utf-8",
+                        contentType: "application/json",
 
-                        dataType: "json",
+                      /*  dataType: "json",*/
 
                         success: function (data) { console.log(data); },
 
