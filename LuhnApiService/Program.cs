@@ -14,24 +14,23 @@ app.MapPost("/v1/card-validator", async (HttpRequest request) =>
 {
     try
     {
-        // Read the request body (assuming JSON content)
-        var body = await request.ReadFromJsonAsync<CardValidatorRequest>();
+       
+        var body = await request.ReadFromJsonAsync<HttpPostCardValidatorRequest>();
  
 
-        // Your logic to process the request body
-        // For example, validating the card:
+        
         if (body == null)
         {
       
-            return Results.BadRequest(new { status = HttpResponceEnum.SUCCESS.ToString()    , message = "Invalid request body" });
+            return Results.BadRequest(new { status = APTResponceStatus.SUCCESS.ToString()    , message = "Invalid request body" });
         }
 
-        // Assuming successful validation:
-        return Results.Ok(new { status = HttpResponceEnum.SUCCESS.ToString(), message = body });
+        
+        return Results.Ok(new { status = APTResponceStatus.SUCCESS.ToString(), message = body });
     }
     catch (Exception ex)
     {
-        return Results.BadRequest(new { status = HttpResponceEnum.FAILL.ToString(), message = "Invalid request body" });
+        return Results.BadRequest(new { status = APTResponceStatus.FAILL.ToString(), message = "Invalid request body" });
     }
 });
 

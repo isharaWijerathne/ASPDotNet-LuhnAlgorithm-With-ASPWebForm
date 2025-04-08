@@ -1,6 +1,6 @@
 ﻿namespace LuhnApiService.helper
 {
-    public class CardValidatorRequest
+    public class HttpPostCardValidatorRequest
     {
         public string? CardNumber { get; set; }
         public string? ExpireDate { get; set; } //  Date/Year

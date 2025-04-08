@@ -4,7 +4,7 @@ namespace LuhnApiService.CardValidatorFunction.Repository
 {
     public class CardValidatorFnc : ICardValidatorFnc
     {
-        public CardValidatedStatus CardLengthValidator(string CardNumber)
+        public CardValidatedStatus CardLengthValidator(string CardNumber, CardValidatedStatus PreResult)
         {
             if (CardNumber.Length == 15 || CardNumber.Length == 16)
             {
