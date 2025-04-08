@@ -1,3 +1,8 @@
+using LuhnApiService.CardValidatedChain;
+using LuhnApiService.CardValidatedChain.Chain;
+using LuhnApiService.CardValidatorFunction;
+using LuhnApiService.CardValidatorFunction.Repository;
+using LuhnApiService.DTO;
 using LuhnApiService.helper;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +22,27 @@ app.MapPost("/v1/card-validator", async (HttpRequest request) =>
        
         var body = await request.ReadFromJsonAsync<HttpPostCardValidatorRequest>();
  
+
+        //ValicaterFiction
+        ICardValidatorFnc CardValidatorFunc = new CardValidatorFnc();
+
+        //Validate Chain
+        ICardValidatorChainHandler CardLenghtValidater = new CardLengthValidator(CardValidatorFunc);
+        ICardValidatorChainHandler CardProviderValidater = new CardProviderValidator(CardValidatorFunc);
+        ICardValidatorChainHandler CardNumberValidater = new CardNumberValidator(CardValidatorFunc);
+
+        //Order Assing
+        CardLenghtValidater.SetNextHandler(CardProviderValidater);
+        CardProviderValidater.SetNextHandler(CardNumberValidater);
+
+        CardValidatedStatus Result = CardLenghtValidater.Handler(body.CardNumber, new CardValidatedStatus() 
+        { IsCardLengthValid=false,
+        IsCardValid=false,
+        CardProvider = CardProvider.None.ToString()
+           
+        });
+
+        
 
         
         if (body == null)

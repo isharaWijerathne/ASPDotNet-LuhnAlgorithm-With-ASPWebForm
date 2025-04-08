@@ -14,12 +14,18 @@ namespace LuhnApiService.CardValidatedChain.Chain
         }
 
         public CardValidatedStatus Handler(string CartNumber, CardValidatedStatus PreResult)
-        {
-            return this.Handler(CartNumber,
-                this.CardValidatorFnc.CardNumberValidate(CartNumber,PreResult));
+        {;
+
+            if (CardValidatorChainHandler == null) { 
+               
+                return this.CardValidatorFnc.CardNumberValidate(CartNumber, PreResult);
+            }
+
+            return this.CardValidatorChainHandler.Handler(CartNumber,
+                CardValidatorFnc.CardNumberValidate(CartNumber, PreResult));
         }
 
-        public void SetNextHandler(ICardValidatorChainHandler CardValidatorChainHandler)
+        public void SetNextHandler(ICardValidatorChainHandler? CardValidatorChainHandler)
         {
             this.CardValidatorChainHandler = CardValidatorChainHandler;
         }

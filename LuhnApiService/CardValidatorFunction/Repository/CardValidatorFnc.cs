@@ -67,7 +67,7 @@ namespace LuhnApiService.CardValidatorFunction.Repository
         {
             //Auth AmEx
             if (
-                Convert.ToInt16(CardNumber.Substring(0, 2)) == 34 || Convert.ToInt16(CardNumber.Substring(0, 2)) == 37
+                Convert.ToInt32(CardNumber.Substring(0, 2)) == 34 || Convert.ToInt32(CardNumber.Substring(0, 2)) == 37
                 ) { 
             
                 var UpdatedStatus = PreResult;
@@ -77,7 +77,7 @@ namespace LuhnApiService.CardValidatorFunction.Repository
 
             //Auth Visa
             if (
-                Convert.ToInt16(CardNumber.Substring(0,1)) == 4
+                Convert.ToInt32(CardNumber.Substring(0,1)) == 4
                 )
             {
 
@@ -88,8 +88,8 @@ namespace LuhnApiService.CardValidatorFunction.Repository
 
             //Auth MasterCard
             if (
-                Convert.ToInt16(CardNumber.Substring(0, 2)) == 22 ||
-                 Convert.ToInt16(CardNumber.Substring(0, 2)) >= 51 && Convert.ToInt16(CardNumber.Substring(0, 2)) <= 55
+                Convert.ToInt32(CardNumber.Substring(0, 2)) == 22 ||
+                 Convert.ToInt32(CardNumber.Substring(0, 2)) >= 51 && Convert.ToInt32(CardNumber.Substring(0, 2)) <= 55
                 )
             {
 
@@ -100,7 +100,7 @@ namespace LuhnApiService.CardValidatorFunction.Repository
 
             //Auth Discover
             if (
-                Convert.ToInt16(CardNumber.Substring(0, 4)) == 6011
+                Convert.ToInt32(CardNumber.Substring(0, 4)) == 6011
                 )
             {
 
@@ -109,7 +109,7 @@ namespace LuhnApiService.CardValidatorFunction.Repository
                 return UpdatedStatus;
             }
 
-
+            
 
             return PreResult;
 
