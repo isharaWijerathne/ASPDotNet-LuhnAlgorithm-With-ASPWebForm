@@ -1,44 +1,104 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="LuhnUi._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
     <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+        <div class="d-flex justify-content-center">
+            <div class="row">
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
+                <div class="col-12 mb-3">
+                    <label for="" class="form-label">Card Number</label>
+                    <input id="cardNumber" type="text" class="form-control"  aria-describedby="emailHelp"/>
+                </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Expiry Date</label>
+                        <input id="expiryDate" type="text" placeholder="MM/YY" class="form-control" />
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Cvv</label>
+                        <input id="cvv" type="number" class="form-control" />
+                    </div>
+
+                    <div class="col-12 mb-3 form-check">
+                        <div id="responceMessage" class="form-text">We'll never share your email with anyone else.</div>
+                        <button id="btnCheck" type="submit" class="btn btn-primary ">Submit</button>
+                    </div>
+
+            </div>
+
         </div>
     </main>
+
+        
+    <script>
+
+
+        $(document).ready(() => {
+
+            //hideResponceMessage
+            $("#responceMessage").hide();
+           
+            $("#btnCheck").click((e) => {
+                e.preventDefault();
+                var CardName = $("#cardNumber").val();
+                var ExpiryDate = $("#expiryDate").val();
+                var Cvv = $("#cvv").val();
+
+
+                if (CardName === "" || ExpiryDate === "" || Cvv === "") {
+                    //alert("Please fill out all fields.");
+                    validationMsgShow("ValidationFail")
+                } else {
+
+                    console.log("Card Number:", CardName);
+                    console.log("Expiry Date:", ExpiryDate);
+                    console.log("CVV:", Cvv);
+
+                    $.ajax({
+                        type: "POST",
+
+                        url: "http://localhost:47019/v1/card-validator",
+                       
+                        data: JSON.stringify(
+                            {
+                                CardNumber: CardName,
+                                ExpireDate: ExpiryDate,
+                                CVV: Cvv
+                            }
+                        ),
+
+                        contentType: "application/json; charset=utf-8",
+
+                        dataType: "json",
+
+                        success: function (data) { console.log(data); },
+
+                        error: function (errMsg) {
+                            alert(errMsg);
+                        }
+                    });
+                }
+
+            })
+
+
+
+            //Validation function
+            const validationMsgShow = (message) => {
+
+                $("#responceMessage").text(message)
+                $("#responceMessage").show()
+
+                setTimeout(() => {
+                    $("#responceMessage").hide()
+                },3000)
+            }
+        });
+        
+
+
+    </script>
 
 </asp:Content>

@@ -14,6 +14,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.MapPost("/v1/card-validator", async (HttpRequest request) =>
 {
