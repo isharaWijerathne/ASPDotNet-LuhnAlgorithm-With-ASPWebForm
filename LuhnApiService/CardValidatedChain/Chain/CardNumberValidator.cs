@@ -14,6 +14,7 @@ namespace LuhnApiService.CardValidatedChain.Chain
         }
 
         public CardValidatedStatus Handler(string CartNumber, CardValidatedStatus PreResult)
+<<<<<<< HEAD
         {
 
             if (CardValidatorChainHandler == null) { 
@@ -24,9 +25,20 @@ namespace LuhnApiService.CardValidatedChain.Chain
                 this.CardValidatorFnc.CardNumberValidate(CartNumber,PreResult));
 
             
+=======
+        {;
+
+            if (CardValidatorChainHandler == null) { 
+               
+                return this.CardValidatorFnc.CardNumberValidate(CartNumber, PreResult);
+            }
+
+            return this.CardValidatorChainHandler.Handler(CartNumber,
+                CardValidatorFnc.CardNumberValidate(CartNumber, PreResult));
+>>>>>>> 48cd545beeb6e2117089cecceefdfea0ddf9c7b4
         }
 
-        public void SetNextHandler(ICardValidatorChainHandler CardValidatorChainHandler)
+        public void SetNextHandler(ICardValidatorChainHandler? CardValidatorChainHandler)
         {
             this.CardValidatorChainHandler = CardValidatorChainHandler;
         }

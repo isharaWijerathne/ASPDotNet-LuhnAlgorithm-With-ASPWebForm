@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuhnApiService", "LuhnApiSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuhnUi", "LuhnUi\LuhnUi.csproj", "{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewLogicalTester", "NewLogicalTester\NewLogicalTester.csproj", "{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTester", "LogicTester\LogicTester.csproj", "{FC9FE2E5-1F94-4521-AF73-7E528C43C007}"
+>>>>>>> 48cd545beeb6e2117089cecceefdfea0ddf9c7b4
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +27,17 @@ Global
 		{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB37B0E7-8518-42CA-B1AB-05E2DA808E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28BE1375-056F-41E8-9DC6-979DDD2CF2B7}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{FC9FE2E5-1F94-4521-AF73-7E528C43C007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9FE2E5-1F94-4521-AF73-7E528C43C007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9FE2E5-1F94-4521-AF73-7E528C43C007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9FE2E5-1F94-4521-AF73-7E528C43C007}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 48cd545beeb6e2117089cecceefdfea0ddf9c7b4
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

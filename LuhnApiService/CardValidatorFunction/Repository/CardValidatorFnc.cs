@@ -109,7 +109,7 @@ namespace LuhnApiService.CardValidatorFunction.Repository
                 return UpdatedStatus;
             }
 
-
+            
 
             return PreResult;
 
