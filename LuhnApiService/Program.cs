@@ -32,8 +32,8 @@ app.MapPost("/v1/card-validator", async (HttpRequest request) =>
         ICardValidatorChainHandler CardNumberValidater = new CardNumberValidator(CardValidatorFunc);
 
         //Order Assing
-        CardLenghtValidater.SetNextHandler(CardProviderValidater);
-        CardProviderValidater.SetNextHandler(CardNumberValidater);
+        CardLenghtValidater.SetNextHandler(CardNumberValidater);
+        CardNumberValidater.SetNextHandler(CardProviderValidater);
 
         CardValidatedStatus Result = CardLenghtValidater.Handler(body.CardNumber, new CardValidatedStatus() 
         { IsCardLengthValid=false,
@@ -41,18 +41,8 @@ app.MapPost("/v1/card-validator", async (HttpRequest request) =>
         CardProvider = CardProvider.None.ToString()
            
         });
-
         
-
-        
-        if (body == null)
-        {
-      
-            return Results.BadRequest(new { status = APTResponceStatus.SUCCESS.ToString()    , message = "Invalid request body" });
-        }
-
-        
-        return Results.Ok(new { status = APTResponceStatus.SUCCESS.ToString(), message = body });
+        return Results.Ok(new { status = APTResponceStatus.SUCCESS.ToString(), message = Result });
     }
     catch (Exception ex)
     {
