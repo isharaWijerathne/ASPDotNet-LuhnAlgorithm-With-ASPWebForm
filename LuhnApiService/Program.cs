@@ -50,12 +50,16 @@ app.MapPost("/v1/card-validator", async (HttpRequest request) =>
         CardProvider = CardProvider.None.ToString()
            
         });
-        
+
+        if (Result.IsCardValid == false || Result.IsCardLengthValid == false || Result.CardProvider == CardProvider.None.ToString()) {
+
+            throw new Exception("Invalid card details");
+        }        
         return Results.Ok(new { status = APTResponceStatus.SUCCESS.ToString(), message = Result });
     }
     catch (Exception ex)
     {
-        return Results.BadRequest(new { status = APTResponceStatus.FAILL.ToString(), message = "Invalid request body" });
+        return Results.BadRequest(new { status = APTResponceStatus.FAILL.ToString(), message = ex.Message });
     }
 });
 

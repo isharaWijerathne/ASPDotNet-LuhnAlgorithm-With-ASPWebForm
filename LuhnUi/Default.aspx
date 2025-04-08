@@ -23,7 +23,7 @@
 
                     <div class="col-12 mb-3 form-check">
                         <div id="responceMessage" class="form-text">We'll never share your email with anyone else.</div>
-                        <button id="btnCheck" type="submit" class="btn btn-primary ">Submit</button>
+                        <button id="btnCheck" type="submit" class="btn btn-primary ">Process</button>
                     </div>
 
             </div>
@@ -49,7 +49,7 @@
 
                 if (CardName === "" || ExpiryDate === "" || Cvv === "") {
                     //alert("Please fill out all fields.");
-                    validationMsgShow("ValidationFail")
+                    validationMsgShow("ValidationFail","danger")
                 } else {
 
                     console.log("Card Number:", CardName);
@@ -71,12 +71,18 @@
 
                         contentType: "application/json",
 
-                      /*  dataType: "json",*/
+             
 
-                        success: function (data) { console.log(data); },
+                        success: function (data) {
+                            console.log(data.message.cardProvider + " " + data.status + data)
+                             
+                             validationMsgShow("Valid " + data.message.cardProvider + " Card", "success")
+                           
+                        },
 
                         error: function (errMsg) {
-                            alert(errMsg);
+                            console.log(errMsg.responseJSON.message)
+                            validationMsgShow(errMsg.responseJSON.message, "danger")
                         }
                     });
                 }
@@ -86,9 +92,12 @@
 
 
             //Validation function
-            const validationMsgShow = (message) => {
+            const validationMsgShow = (message,type) => {
 
-                $("#responceMessage").text(message)
+                $("#responceMessage").html(`<div class="alert alert-${type}" role="alert">
+                                                  ${message}
+                                                </div>
+                                                `)
                 $("#responceMessage").show()
 
                 setTimeout(() => {
